@@ -1,66 +1,38 @@
-## Foundry
+# gnark-mimc-solidity
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+- `src/MiMCHasher.sol`: Solidity implementation of [gnark-crypto](https://github.com/Consensys/gnark-crypto/) library's `mimc` hash function.
+- `test/MiMCTest.t.sol`: tests the output of gnark-crypto `mimc` against the output of the Solidity implementation.
 
-Foundry consists of:
+> ⚠️ **Warning:** The Solidity implementation has NOT been audited.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
+The purpose of building this Solidity implementation is to verify proofs for ZK-SNARK circuits built using gnark, which use gnark's `mimc`.
 
 ## Usage
 
-### Build
+Clone the repository
 
-```shell
-$ forge build
+```bash
+
 ```
 
-### Test
+Install forge dependencies
 
-```shell
-$ forge test
+```bash
+
 ```
 
-### Format
+Install go dependencies
 
-```shell
-$ forge fmt
+```
+go mod tidy
 ```
 
-### Gas Snapshots
+Run test
 
-```shell
-$ forge snapshot
+```
+forge test
 ```
 
-### Anvil
+## Feedback
 
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Please feel free to open an issue with any feedback!
