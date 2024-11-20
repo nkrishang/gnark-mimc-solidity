@@ -1,6 +1,6 @@
 # gnark-mimc-solidity
 
-- `src/MiMCHasher.sol`: Solidity implementation of [gnark-crypto](https://github.com/Consensys/gnark-crypto/) library's `mimc` hash function.
+- `src/MiMCHasher.sol`: Solidity implementation of [gnark-crypto](https://github.com/Consensys/gnark-crypto/) library's `mimc (Miyaguchi-Preneel) hash function.
 - `test/MiMCTest.t.sol`: tests the output of gnark-crypto `mimc` against the output of the Solidity implementation.
 
 > ⚠️ **Warning:** The Solidity implementation has NOT been audited.
@@ -35,4 +35,4 @@ forge test
 
 ## Feedback
 
-Please feel free to open an issue with any feedback!
+Please feel free to open an issue with any feedba!
