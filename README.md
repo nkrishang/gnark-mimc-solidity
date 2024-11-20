@@ -5,7 +5,7 @@
 
 > ⚠️ **Warning:** The Solidity implementation has NOT been audited.
 
-The purpose of building this Solidity implementation is to verify proofs for ZK-SNARK circuits built using gnark, which use gnark's `mimc`.
+The purpose of building this Solidity implementation is to verify proofs for ZK-SNARK circuits which use gnark's `mimc`.
 
 ## Usage
 
