@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/nkrishang/go-fixed-merkle-tree/merkle"
+	"github.com/nkrishang/go-fixed-merkle-tree/go/merkle"
 )
 
 // mockMiMCHash is a simplified hash function for demonstration
