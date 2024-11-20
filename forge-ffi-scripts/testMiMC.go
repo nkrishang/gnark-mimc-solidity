@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/rand"
 	"encoding/hex"
 	"fmt"
 	"math/big"
@@ -12,6 +13,11 @@ import (
 )
 
 var fieldSize, _ = new(big.Int).SetString("21888242871839275222246405745257275088548364400416034343698204186575808495617", 10)
+
+func RandomBigInt() (*big.Int) {
+	v, _ := rand.Int(rand.Reader, fieldSize) 
+	return v
+}
 
 // ComputeMiMCHash computes a MiMC hash of the input values
 func ComputeMiMCHash(inputs []*big.Int) (*big.Int, error) {
@@ -38,8 +44,8 @@ func ComputeMiMCHash(inputs []*big.Int) (*big.Int, error) {
 
 func main() {
 	// Generate two test inputs
-	xElem, _ := new(big.Int).SetString("100", 10)
-	yElem, _ := new(big.Int).SetString("100", 10)
+	xElem := RandomBigInt()
+	yElem := RandomBigInt()
 
 	// Verify values are less than field size
 	if xElem.Cmp(fieldSize) >= 0 || yElem.Cmp(fieldSize) >= 0 {
