@@ -4,12 +4,11 @@ pragma solidity ^0.8.13;
 import {Test, console} from "forge-std/Test.sol";
 import {MiMCHasher} from "src/MiMCHasher.sol";
 
-interface IMiMCHasher {
-    function hash(uint256[] calldata data) external view returns (uint256);
-}
-
+/**
+ * /forge-ffi-scripts generates 2 random field elements and computes their hash using gnark-crypto's mimc (Miyaguchi-Preneel).
+ * This test compares gnark-crypto's output with the output of the Solidity implementation `MiMCHasher.sol` of gnark-crypto's mimc.
+ */
 contract MiMCTest is Test {
-
     uint256 internal constant FIELD_SIZE = 21888242871839275222246405745257275088548364400416034343698204186575808495617;
 
     MiMCHasher public hasher;
@@ -21,7 +20,7 @@ contract MiMCTest is Test {
     function hashLeftRight(bytes32 _left, bytes32 _right) public view returns (bytes32) {
         require(uint256(_left) < FIELD_SIZE, "_left should be inside the field");
         require(uint256(_right) < FIELD_SIZE, "_right should be inside the field");
-        
+
         // Simply use our M-P hash with two inputs
         uint256[] memory inputs = new uint256[](2);
         inputs[0] = uint256(_left);

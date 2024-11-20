@@ -5,7 +5,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"math/big"
-	"os"
 
 	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
 	"github.com/consensys/gnark-crypto/ecc/bn254/fr/mimc"
@@ -73,11 +72,6 @@ func main() {
 		{Type: uint256Ty},
 		{Type: bytes32Ty},
 	}
-
-	// Debug output
-	fmt.Fprintf(os.Stderr, "x: %s\n", xElem.String())
-	fmt.Fprintf(os.Stderr, "y: %s\n", yElem.String())
-	fmt.Fprintf(os.Stderr, "hash: 0x%x\n", resultBytes32)
 
 	// Pack values for Forge test
 	encoded, err := args.Pack(&xElem, &yElem, resultBytes32)

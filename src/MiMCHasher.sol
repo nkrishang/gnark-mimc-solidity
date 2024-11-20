@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 contract MiMCHasher {
     uint256 private constant MIMC_ROUNDS = 110;
     uint256 private constant FIELD_SIZE = 21888242871839275222246405745257275088548364400416034343698204186575808495617;
-    
+
     // Round constants. Matches gnark: rounds=110 seed="seed"
     uint256 private constant ROUND_CONSTANT_1 = 0x00808370c37267481fb91b077899955706f209e5e0762dac2c79ba1e7a91b018;
     uint256 private constant ROUND_CONSTANT_2 = 0x1f6e7f6a521c0af287b4d065a78dcd43b959592d734118f9d32767fad2dd3449;
@@ -121,31 +121,31 @@ contract MiMCHasher {
     function encrypt(uint256 m, uint256 h) internal pure returns (uint256) {
         uint256 tmp;
         uint256[] memory roundConstants = getRoundConstants();
-        
-        for(uint256 i = 0; i < MIMC_ROUNDS; i++) {
+
+        for (uint256 i = 0; i < MIMC_ROUNDS; i++) {
             // tmp = m + h + c
             tmp = addmod(addmod(m, h, FIELD_SIZE), roundConstants[i], FIELD_SIZE);
-            
+
             // m = tmp^5
-            m = mulmod(tmp, tmp, FIELD_SIZE);  // tmp^2
-            m = mulmod(m, m, FIELD_SIZE);      // tmp^4
-            m = mulmod(m, tmp, FIELD_SIZE);    // tmp^5
+            m = mulmod(tmp, tmp, FIELD_SIZE); // tmp^2
+            m = mulmod(m, m, FIELD_SIZE); // tmp^4
+            m = mulmod(m, tmp, FIELD_SIZE); // tmp^5
         }
-        
+
         return addmod(m, h, FIELD_SIZE);
     }
 
     // Implements gnark's Miyaguchi-Preneel construction exactly
     function hash(uint256[] calldata data) public pure returns (uint256) {
         uint256 h = 0;
-        
+
         // Match gnark's checksum implementation
         for (uint256 i = 0; i < data.length; i++) {
             uint256 r = encrypt(data[i], h);
             // h = encrypt(m, h) + h + m
             h = addmod(addmod(r, h, FIELD_SIZE), data[i], FIELD_SIZE);
         }
-        
+
         return h;
     }
 

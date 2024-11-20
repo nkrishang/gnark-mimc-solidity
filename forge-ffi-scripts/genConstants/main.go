@@ -8,6 +8,8 @@ import (
 	"golang.org/x/crypto/sha3"
 )
 
+// Note: use as go run forge-ffi-scripts/genConstants/main.go > outputFile
+
 const (
 	mimcNbRounds = 110
 	seed         = "seed"
