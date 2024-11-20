@@ -1,4 +1,4 @@
-module github.com/nkrishang/go-fixed-merkle-tree
+module github.com/nkrishang/gnark-mimc-solidity
 
 go 1.23.0
 
