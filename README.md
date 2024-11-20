@@ -12,13 +12,13 @@ The purpose of building this Solidity implementation is to verify proofs for ZK-
 Clone the repository
 
 ```bash
-
+git clone https://github.com/nkrishang/gnark-mimc-solidity.git
 ```
 
 Install forge dependencies
 
 ```bash
-
+forge install
 ```
 
 Install go dependencies
